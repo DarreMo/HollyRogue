@@ -1,15 +1,9 @@
 package nl.han.ica.HollyRogue;
 
-import javazoom.jl.player.Player;
+import javazoom.spi.mpeg.sampled.file.tag.StringableTag;
 import nl.han.ica.HollyRogue.tiles.WallTile;
 import nl.han.ica.oopg.engine.GameEngine;
-
-/**
- * Created by timon on 23-10-2018.
- */
-import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.objects.TextObject;
 import nl.han.ica.oopg.tile.TileMap;
 import nl.han.ica.oopg.tile.TileType;
 import nl.han.ica.oopg.view.View;
@@ -18,8 +12,7 @@ public class HollyRogue extends GameEngine {
     private Player player;
     private TileMap tileMap;
 
-
-    public static String MEDIA_URL = "src/main/java/nl/han/HollyRogue/media/";
+    public static String MEDIA_URL = "src/main/java/nl/han/ica/HollyRogue/media/";
 
     public static void main(String[] args) {
         HollyRogue hr = new HollyRogue();
@@ -33,16 +26,6 @@ public class HollyRogue extends GameEngine {
 
         player = new Player(this);
         addGameObject(player, 200, 200);
-
-        /*
-        * r:34
-        * Unhandled exception:javazoom.jl.decoder.JavaLayerException
-        *
-        * r35
-        * Wrong 1st argument type. Found:javazoom.jl.decoder.JavaLayerException , required: nl.han.ica.oopg.object.GameObject
-
-        * */
-
 
         View view = new View(worldWidth, worldHeight);
 
