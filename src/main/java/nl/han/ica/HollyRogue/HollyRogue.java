@@ -1,7 +1,7 @@
 package nl.han.ica.HollyRogue;
 
-import javazoom.spi.mpeg.sampled.file.tag.StringableTag;
-import nl.han.ica.HollyRogue.tiles.WallTile;
+import nl.han.ica.HollyRogue.gameObjects.Player;
+import nl.han.ica.HollyRogue.tiles.FloorTile;
 import nl.han.ica.oopg.engine.GameEngine;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.tile.TileMap;
@@ -21,34 +21,47 @@ public class HollyRogue extends GameEngine {
 
     @Override
     public void setupGame() {
-        int worldWidth = 500;
-        int worldHeight = 500;
+        int worldWidth = 1280;
+        int worldHeight = 720;
 
-        player = new Player(this);
+        player = new Player(this, "player.png");
         addGameObject(player, 200, 200);
 
         View view = new View(worldWidth, worldHeight);
 
         setView(view);
         size(worldWidth, worldHeight);
+        initializeTileMap();
+
+
     }
 
     private void initializeTileMap() {
-        //Sprite Loading
-        Sprite wallSprite = new Sprite(this.MEDIA_URL.concat("Sprite.png"));
+        /* TILES */
+        Sprite boardsSprite = new Sprite(HollyRogue.MEDIA_URL.concat("player.png"));
+        TileType<FloorTile> boardTileType = new TileType<>(FloorTile.class, boardsSprite);
 
-        TileType<WallTile> wallTileType = new TileType<>(WallTile.class, wallSprite);
-
-        TileType[] tileTypes = {wallTileType};
-        int tileSize = 64;
-        int tilesMap[][] = {
-                {-1, -1, -1, -1, -1, -1, -1, },
-                {-1, -1, -1, -1, -1, -1, -1, },
-                {-1, -1, -1, -1, -1, -1, -1, },
-                {-1, -1, -1, -1, -1, -1, -1, },
-                {0, 0, 0, 0, 0, 0, 0, },
-                {-1, -1, -1, -1, -1, -1, -1, },
-                {-1, -1, -1, -1, -1, -1, -1, },
+        TileType[] tileTypes = { boardTileType };
+        int tileSize=40;
+        int tilesMap[][]={
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1, 0, 0, 0, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0, 0, 0, 0,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0, 0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         };
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }

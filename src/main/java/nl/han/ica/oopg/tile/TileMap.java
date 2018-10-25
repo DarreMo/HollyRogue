@@ -7,7 +7,7 @@ import processing.core.PImage;
 import processing.core.PVector;
 
 /**
- * This class contains the map of WallTile which will be drawn within the game.
+ * This class contains the map of FloorTile which will be drawn within the game.
  */
 public class TileMap {
 
