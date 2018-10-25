@@ -34,6 +34,16 @@ public class HollyRogue extends GameEngine {
         player = new Player(this);
         addGameObject(player, 200, 200);
 
+        /*
+        * r:34
+        * Unhandled exception:javazoom.jl.decoder.JavaLayerException
+        *
+        * r35
+        * Wrong 1st argument type. Found:javazoom.jl.decoder.JavaLayerException , required: nl.han.ica.oopg.object.GameObject
+
+        * */
+
+
         View view = new View(worldWidth, worldHeight);
 
         setView(view);
