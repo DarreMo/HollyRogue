@@ -12,6 +12,7 @@ import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.tile.Tile;
 import nl.han.ica.oopg.userinput.IKeyInput;
 import nl.han.ica.oopg.userinput.IMouseInput;
+import nl.han.ica.oopg.view.CenterFollowingViewport;
 import nl.han.ica.oopg.view.View;
 import nl.han.ica.oopg.tile.TileMap;
 import processing.core.PApplet;

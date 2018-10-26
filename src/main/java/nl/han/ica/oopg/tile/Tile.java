@@ -7,7 +7,6 @@ import nl.han.ica.oopg.objects.Sprite;
  * Extend tile to create different types of tiles.
  */
 public class Tile {
-
     private Sprite sprite;
 
     /**
@@ -17,7 +16,6 @@ public class Tile {
     public Tile(Sprite sprite) {
         setSprite(sprite);
     }
-
     /**
      * Use to get the Sprite object which is used to draw the image of the tile.
      *
