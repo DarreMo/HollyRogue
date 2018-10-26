@@ -14,7 +14,8 @@ import java.util.List;
 public class Player extends Movable implements IKeyInput,ICollidableWithTiles {
     private HollyRogue world;
     private String image;
-    private float walkSpeed = 1;
+    private float walkSpeed = 0.5f;
+    private float gravity;
 
     public Player(HollyRogue world, String image) {
         super(world, image);
@@ -31,6 +32,8 @@ public class Player extends Movable implements IKeyInput,ICollidableWithTiles {
                 break;
             case (UP):
                 setySpeed(-walkSpeed);
+                gravity = 0.2f;
+                setGravity(gravity);
                 break;
             case (DOWN):
                 setySpeed(walkSpeed);
@@ -54,29 +57,62 @@ public class Player extends Movable implements IKeyInput,ICollidableWithTiles {
         PVector vector;
         for (CollidedTile ct : collidedTiles) {
             if (ct.getTile() instanceof WallTile) {
-                switch (ct.getCollisionSide()){
-                    case TOP: case BOTTOM:
-                        try {
-                        vector = world.getTileMap().getTilePixelLocation(ct.getTile());
-                        setY(vector.y - getHeight());
-                        } catch (TileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        break;
-                    case LEFT: case RIGHT:
-                        try {
-                            vector = world.getTileMap().getTilePixelLocation(ct.getTile());
-                            setX(vector.x - getWidth());
-                        } catch (TileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        break;
+                try {
+                    vector = world.getTileMap().getTilePixelLocation(ct.getTile());
+                    setY(vector.y - getHeight());
+                } catch (TileNotFoundException e) {
+                    e.printStackTrace();
                 }
-
             }
         }
 
     }
+//    @Override
+//    public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
+//        PVector vector;
+//        for (CollidedTile ct : collidedTiles) {
+//            if (ct.getTile() instanceof WallTile) {
+//                switch (ct.getCollisionSide()){
+//                    case TOP:
+//                        try {
+//                        vector = world.getTileMap().getTilePixelLocation(ct.getTile());
+//                        setY(vector.y + this.getHeight());
+//                        setySpeed(0);
+//                        } catch (TileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//                        break;
+//                    case BOTTOM:
+//                        try {
+//                            vector = world.getTileMap().getTilePixelLocation(ct.getTile());
+//                            setY(vector.y - getHeight());
+//                        } catch (TileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//                        break;
+//                    case LEFT:
+//                        try {
+//                            vector = world.getTileMap().getTilePixelLocation(ct.getTile());
+//                            setX(vector.x + getWidth());
+//                        } catch (TileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//                        break;
+//                    case RIGHT:
+//                        try {
+//                            vector = world.getTileMap().getTilePixelLocation(ct.getTile());
+//                            setX(vector.x + getWidth());
+//                        } catch (TileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//                        break;
+//                }
+//
+//            }
+//        }
+//
+//    }
+
 
     @Override
     public void update() {

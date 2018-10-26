@@ -58,7 +58,7 @@ public class HollyRogue extends GameEngine {
         TileType<WallTile> wallTileType = new TileType<>(WallTile.class, wallSprite);
         TileType<FloorTile> boardTileType = new TileType<>(FloorTile.class, testSprite);
 
-        TileType[] tileTypes = {wallTileType, boardTileType};
+        TileType[] tileTypes = {wallTileType, boardTileType };
         int tileSize=25;
         int tilesMap[][]={
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
